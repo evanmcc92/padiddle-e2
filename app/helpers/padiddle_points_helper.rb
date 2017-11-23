@@ -1,0 +1,2 @@
+module PadiddlePointsHelper
+end

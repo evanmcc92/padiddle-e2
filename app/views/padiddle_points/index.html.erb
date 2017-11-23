@@ -1,0 +1,22 @@
+<% if notice %>
+  <p id="notice" class="alert alert-primary" role="alert"><%= notice %></p>
+<% end %>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Price</th>
+      <th scope="col">Person</th>
+      <th scope="col">Date Spotted</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @padiddle_points.each do |padiddle_point| %>
+      <tr>
+        <td scope="row"><%= number_to_currency(padiddle_point.price, :unit => "$") %></td>
+        <td><%= link_to User.find_by_id(padiddle_point.user).name, user_path(padiddle_point.user) %></td>
+        <td><%= padiddle_point.created_at.strftime("%FT%T") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
