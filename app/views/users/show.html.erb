@@ -1,25 +1,27 @@
 <% if notice %>
-	<p id="notice" class="alert alert-primary" role="alert"><%= notice %></p>
+	<div style="margin: 1%">
+		<p id="notice" class="alert alert-primary" role="alert"><%= notice %></p>
+	</div>
 <% end %>
-<h1><%= @user.name %></h1>
-<h3>Total: <%= number_to_currency(@price, :unit => "$") %></h3>
-<p><%= link_to 'Back', root_path %></p>
+<div style="margin: 1%">
+	<h1><%= @user.name %></h1>
+	<h3>Total: <%= number_to_currency(@price, :unit => "$") %></h3>
+	
+	<table class="table">
+	  <thead class="thead-light">
+	    <tr>
+	      <th scope="col">Price</th>
+	      <th scope="col">Date Spotted</th>
+	    </tr>
+	  </thead>
 
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Price</th>
-      <th scope="col">Date Spotted</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @padiddles.each do |padiddle_point| %>
-      <tr>
-        <td scope="row"><%= number_to_currency(padiddle_point.price, :unit => "$") %></td>
-        <td><%= padiddle_point.created_at.strftime("%FT%T") %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+	  <tbody>
+	    <% @padiddles.each do |padiddle_point| %>
+	      <tr>
+	        <td scope="row"><%= number_to_currency(padiddle_point.price, :unit => "$") %></td>
+	        <td><%= padiddle_point.created_at.strftime("%m/%e/%Y %l:%M %p (%Z)") %></td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+</div>

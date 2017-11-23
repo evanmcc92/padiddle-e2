@@ -1,23 +1,23 @@
-	<% User.all.each do |u| %>
-			<%= form_for(padiddle_point) do |f| %>
-				<% if padiddle_point.errors.any? %>
-					<div id="error_explanation">
-						<h2><%= pluralize(padiddle_point.errors.count, "error") %> prohibited this padiddle_point from being saved:</h2>
+<% User.all.each do |u| %>
+	<%= form_for(padiddle_point) do |f| %>
+		<% if padiddle_point.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(padiddle_point.errors.count, "error") %> prohibited this padiddle_point from being saved:</h2>
 
-						<ul>
-						<% padiddle_point.errors.full_messages.each do |message| %>
-							<li><%= message %></li>
-						<% end %>
-						</ul>
-					</div>
+				<ul>
+				<% padiddle_point.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
 				<% end %>
+				</ul>
+			</div>
+		<% end %>
 
-				<%= f.hidden_field :price, :value => @padiddles %>
-				<%= f.hidden_field :user_id, :value => u.id %>
+		<%= f.hidden_field :price, :value => @padiddles %>
+		<%= f.hidden_field :user_id, :value => u.id %>
 
-				<div class="form-group">  
-					<p><%= f.submit u.name, class: "btn btn-lg btn-primary btn-block", id: "button" %></p>
-				</div>
+		<div class="form-group">  
+			<p><%= f.submit u.name, class: "btn btn-lg btn-primary btn-block", id: "button" %></p>
+		</div>
 
-			<% end %>
 	<% end %>
+<% end %>

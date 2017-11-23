@@ -12,12 +12,36 @@
 
 ActiveRecord::Schema.define(version: 20171122225402) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "padiddle_points", force: :cascade do |t|
     t.decimal  "price"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_padiddle_points_on_user_id"
+    t.index ["user_id"], name: "index_padiddle_points_on_user_id", using: :btree
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "progress"
+    t.string   "status"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "location_id"
+    t.index ["location_id"], name: "index_projects_on_location_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -26,4 +50,6 @@ ActiveRecord::Schema.define(version: 20171122225402) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "padiddle_points", "users"
+  add_foreign_key "projects", "locations"
 end

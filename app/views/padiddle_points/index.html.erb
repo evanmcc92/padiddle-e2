@@ -1,22 +1,27 @@
 <% if notice %>
+<div style="margin: 1%">
   <p id="notice" class="alert alert-primary" role="alert"><%= notice %></p>
+</div>
 <% end %>
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Price</th>
-      <th scope="col">Person</th>
-      <th scope="col">Date Spotted</th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @padiddle_points.each do |padiddle_point| %>
+<div style="margin: 1%">
+  <table class="table">
+    <thead class="thead-light">
       <tr>
-        <td scope="row"><%= number_to_currency(padiddle_point.price, :unit => "$") %></td>
-        <td><%= link_to User.find_by_id(padiddle_point.user).name, user_path(padiddle_point.user) %></td>
-        <td><%= padiddle_point.created_at.strftime("%FT%T") %></td>
+        <th scope="col">Price</th>
+        <th scope="col">Person</th>
+        <th scope="col">Date Spotted</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @padiddle_points.each do |padiddle_point| %>
+        <tr>
+          <td scope="row"><%= number_to_currency(padiddle_point.price, :unit => "$") %></td>
+          <td><%= link_to User.find_by_id(padiddle_point.user).name, user_path(padiddle_point.user) %></td>
+          <td><%= padiddle_point.created_at.strftime("%m/%e/%Y %l:%M %p (%Z)") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
